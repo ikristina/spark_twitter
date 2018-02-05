@@ -65,6 +65,7 @@ def create_data_server_connection():
 
 if __name__ == '__main__':
 
+    # set up logging
     logging.getLogger().setLevel(
         level=logging.INFO
     )
