@@ -13,3 +13,29 @@ With the help of Spark hashtags are being counted (constantly updating as tweets
 ***
 
 ###### _spoiler_: #toronto is usually 7-10 times as popular as any other hashtag
+
+Example (proof):
+
+|       hashtag|hashtag_count|
+|--------------|-------------|
+|       toronto|           37|
+|  bobmarleyday|            5|
+|    realestate|            5|
+|        canada|            5|
+|         sales|            5|
+|          fake|            4|
+|        topoli|            4|
+|      hamilton|            4|
+|        design|            4|
+|         eluta|            3|
+|       startup|            3|
+|reggaetonlento|            3|
+|          sale|            3|
+|     bestremix|            3|
+|  iheartawards|            3|
+|       forsale|            3|
+|   mississauga|            3|
+|        online|            2|
+|          shop|            2|
+|         store|            2|
+
