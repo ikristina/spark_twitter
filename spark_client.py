@@ -44,18 +44,18 @@ def get_sql_context_instance(spark_context):
     return globals()['sqlContextSingletonInstance']
 
 
-def send_df_to_dashboard(df):
+def send_df_to_dashboard(data_frame):
     # extract the hashtags from dataframe and convert them into array
-    top_tags = [str(t.hashtag) for t in df.select("hashtag").collect()]
+    top_tags = [str(t.hashtag) for t in data_frame.select("hashtag").collect()]
     # extract the counts from dataframe and convert them into array
-    tags_count = [p.hashtag_count for p in df.select("hashtag_count").collect()]
+    tags_count = [p.hashtag_count for p in data_frame.select("hashtag_count").collect()]
     # initialize and send the data through REST API
     url = 'http://localhost:5001/updateData'
     request_data = {'label': str(top_tags), 'data': str(tags_count)}
     response = requests.post(url, data=request_data)
 
 
-def process_rdd(time, rdd):
+def process_rdd(_, rdd):
     try:
         # Get spark sql singleton context from the current context
         sql_context = get_sql_context_instance(rdd.context)
@@ -82,7 +82,7 @@ def process_rdd(time, rdd):
         logging.error(e)
 
 
-tags_DS = hashtag_DS.map(lambda word: (word, 1))\
+tags_DS = hashtag_DS.map(lambda word: (word.lower(), 1))\
     .updateStateByKey(aggregate_tags_count)
 
 # do processing for each RDD generated in each interval
